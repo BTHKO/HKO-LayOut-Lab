@@ -1,62 +1,62 @@
-const SHEETS = {
-  MAIN: "HKO LayOut Lab Tracker" // Must match your sheet tab name exactly
-};
-
-const COL = {
-  ID: 8 // Column number where the unique ID is stored (H = 8)
-};
-
-function syncSharedSpaceFromGitHub() {
-  const RAW_URL = "https://raw.githubusercontent.com/BTHKO/HKO-LayOut-Lab/main/manifest.json";
-  const ss = SpreadsheetApp.getActive();
-  const sh = ss.getSheetByName(SHEETS.MAIN);
-  const r = UrlFetchApp.fetch(RAW_URL, { muteHttpExceptions: true });
-
-  if (r.getResponseCode() !== 200) {
-    ss.toast("manifest.json not found");
-    return;
-  }
-
-  const data = JSON.parse(r.getContentText());
-  if (!Array.isArray(data.sections)) {
-    ss.toast("Bad manifest");
-    return;
-  }
-
-  const last = sh.getLastRow();
-  const rows = last > 1 ? sh.getRange(2, 1, last - 1, sh.getLastColumn()).getValues() : [];
-  const byId = new Map(rows.map(r => [String(r[COL.ID - 1] || ""), true]));
-  const urlBase = "https://bthko.github.io/HKO-LayOut-Lab/";
-
-  const adds = [];
-  data.sections.forEach(sec => {
-    const id = sec.id || "";
-    if (!id) return;
-    const mod = Utilities.formatDate(new Date(sec.updatedAt || new Date()), Session.getScriptTimeZone(), "yyyy-MM-dd HH:mm");
-    if (!byId.has(id)) {
-      adds.push([
-        sec.title || "Untitled", 
-        urlBase + "#" + id, 
-        mod, 
-        "", 
-        sec.status || "Pending", 
-        "", 
-        "Shared Space", 
-        id,
-        "", 
-        ((sec.tags || []).length ? `[${sec.tags.join(", ")}] ` : "") + (sec.status ? `Status: ${sec.status}` : ""),
-        "Shared Space", 
-        "", 
-        "", 
-        "", 
-        mod
-      ]);
+{
+  "add": [
+    {
+      "id": "drag-drop-critical-fix",
+      "title": "Fix Drag & Drop File Upload",
+      "status": "In Progress",
+      "tags": ["critical", "drag-drop", "upload", "ui"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "icon-embedding-critical-fix", 
+      "title": "Fix Icon Placeholder Question Marks",
+      "status": "In Progress",
+      "tags": ["critical", "icons", "matching", "preview"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "docx-export-restoration",
+      "title": "Restore Missing DOCX Export Feature", 
+      "status": "Planned",
+      "tags": ["critical", "export", "docx", "missing-feature"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "drag-drop-event-handlers",
+      "title": "Implement Proper Drag & Drop Event Handling",
+      "status": "Planned", 
+      "tags": ["drag-drop", "events", "validation", "feedback"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "icon-matching-system",
+      "title": "Robust Icon Filename Matching System",
+      "status": "Planned",
+      "tags": ["icons", "matching", "normalization", "debugging"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "docx-library-integration",
+      "title": "Add docx.js Library and Export Logic",
+      "status": "Planned",
+      "tags": ["docx", "export", "library", "integration"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "visual-debugging-system",
+      "title": "Icon System Visual Debugging Interface",
+      "status": "Planned",
+      "tags": ["debugging", "icons", "transparency", "logging"],
+      "updatedAt": "2025-08-15T12:00:00Z"
+    },
+    {
+      "id": "file-upload-validation",
+      "title": "Comprehensive File Type Validation",
+      "status": "Planned", 
+      "tags": ["validation", "upload", "error-handling", "ux"],
+      "updatedAt": "2025-08-15T12:00:00Z"
     }
-  });
-
-  if (adds.length) {
-    sh.getRange(sh.getLastRow() + 1, 1, adds.length, adds[0].length).setValues(adds);
-  }
-
-  ss.toast("Shared Space synced.");
+  ],
+  "update": [],
+  "remove": []
 }
