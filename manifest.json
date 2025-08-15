@@ -1,8 +1,7 @@
 {
-  "meta": {
-    "title": "LayoutLab Shared Space",
-    "version": 1
-  },
-  "sections": []
+  "meta": { "title": "LayoutLab Shared Space", "version": 1 },
+  "sections": [
+    { "id": "demo001", "title": "Test Section A", "updatedAt": "2025-08-15T10:00:00Z", "tags": ["demo","sync"], "status": "New" },
+    { "id": "demo002", "title": "Test Section B", "updatedAt": "2025-08-15T10:05:00Z", "tags": ["packet"], "status": "Planned" }
+  ]
 }
-
