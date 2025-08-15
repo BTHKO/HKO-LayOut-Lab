@@ -1,8 +1,62 @@
-{
-  "meta": { "title": "LayoutLab Shared Space", "version": 1 },
-  "sections": [
-    { "id": "docx-color-preservation", "title": "DOCX Color Preservation", "status": "In Progress", "tags": ["docx","styles"], "updatedAt": "2025-08-15T12:00:00Z" },
-    { "id": "brand-kit-apply", "title": "Brand Kit Apply Pipeline", "status": "Planned", "tags": ["brand-kit","pipeline"], "updatedAt": "2025-08-15T12:01:00Z" },
-    { "id": "asset-library-ui", "title": "Asset Library UI", "status": "Planned", "tags": ["ui","assets"], "updatedAt": "2025-08-15T12:02:00Z" }
-  ]
+const SHEETS = {
+  MAIN: "HKO LayOut Lab Tracker" // Must match your sheet tab name exactly
+};
+
+const COL = {
+  ID: 8 // Column number where the unique ID is stored (H = 8)
+};
+
+function syncSharedSpaceFromGitHub() {
+  const RAW_URL = "https://raw.githubusercontent.com/BTHKO/HKO-LayOut-Lab/main/manifest.json";
+  const ss = SpreadsheetApp.getActive();
+  const sh = ss.getSheetByName(SHEETS.MAIN);
+  const r = UrlFetchApp.fetch(RAW_URL, { muteHttpExceptions: true });
+
+  if (r.getResponseCode() !== 200) {
+    ss.toast("manifest.json not found");
+    return;
+  }
+
+  const data = JSON.parse(r.getContentText());
+  if (!Array.isArray(data.sections)) {
+    ss.toast("Bad manifest");
+    return;
+  }
+
+  const last = sh.getLastRow();
+  const rows = last > 1 ? sh.getRange(2, 1, last - 1, sh.getLastColumn()).getValues() : [];
+  const byId = new Map(rows.map(r => [String(r[COL.ID - 1] || ""), true]));
+  const urlBase = "https://bthko.github.io/HKO-LayOut-Lab/";
+
+  const adds = [];
+  data.sections.forEach(sec => {
+    const id = sec.id || "";
+    if (!id) return;
+    const mod = Utilities.formatDate(new Date(sec.updatedAt || new Date()), Session.getScriptTimeZone(), "yyyy-MM-dd HH:mm");
+    if (!byId.has(id)) {
+      adds.push([
+        sec.title || "Untitled", 
+        urlBase + "#" + id, 
+        mod, 
+        "", 
+        sec.status || "Pending", 
+        "", 
+        "Shared Space", 
+        id,
+        "", 
+        ((sec.tags || []).length ? `[${sec.tags.join(", ")}] ` : "") + (sec.status ? `Status: ${sec.status}` : ""),
+        "Shared Space", 
+        "", 
+        "", 
+        "", 
+        mod
+      ]);
+    }
+  });
+
+  if (adds.length) {
+    sh.getRange(sh.getLastRow() + 1, 1, adds.length, adds[0].length).setValues(adds);
+  }
+
+  ss.toast("Shared Space synced.");
 }
