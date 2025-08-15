@@ -1,62 +1,16 @@
 {
-  "add": [
-    {
-      "id": "drag-drop-critical-fix",
-      "title": "Fix Drag & Drop File Upload",
-      "status": "In Progress",
-      "tags": ["critical", "drag-drop", "upload", "ui"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "icon-embedding-critical-fix", 
-      "title": "Fix Icon Placeholder Question Marks",
-      "status": "In Progress",
-      "tags": ["critical", "icons", "matching", "preview"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "docx-export-restoration",
-      "title": "Restore Missing DOCX Export Feature", 
-      "status": "Planned",
-      "tags": ["critical", "export", "docx", "missing-feature"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "drag-drop-event-handlers",
-      "title": "Implement Proper Drag & Drop Event Handling",
-      "status": "Planned", 
-      "tags": ["drag-drop", "events", "validation", "feedback"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "icon-matching-system",
-      "title": "Robust Icon Filename Matching System",
-      "status": "Planned",
-      "tags": ["icons", "matching", "normalization", "debugging"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "docx-library-integration",
-      "title": "Add docx.js Library and Export Logic",
-      "status": "Planned",
-      "tags": ["docx", "export", "library", "integration"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "visual-debugging-system",
-      "title": "Icon System Visual Debugging Interface",
-      "status": "Planned",
-      "tags": ["debugging", "icons", "transparency", "logging"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    },
-    {
-      "id": "file-upload-validation",
-      "title": "Comprehensive File Type Validation",
-      "status": "Planned", 
-      "tags": ["validation", "upload", "error-handling", "ux"],
-      "updatedAt": "2025-08-15T12:00:00Z"
-    }
-  ],
-  "update": [],
-  "remove": []
+  "meta": { "title": "LayoutLab Shared Space", "version": 1 },
+  "sections": [
+    { "id": "demo001", "title": "Test Section A", "updatedAt": "2025-08-15T10:00:00Z", "tags": ["demo","sync"], "status": "New" },
+    { "id": "demo002", "title": "Test Section B", "updatedAt": "2025-08-15T10:05:00Z", "tags": ["packet"], "status": "Planned" },
+
+    { "id": "drag-drop-critical-fix", "title": "Fix Drag & Drop File Upload", "status": "In Progress", "tags": ["critical","drag-drop","upload","ui"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "icon-embedding-critical-fix", "title": "Fix Icon Placeholder Question Marks", "status": "In Progress", "tags": ["critical","icons","matching","preview"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "docx-export-restoration", "title": "Restore Missing DOCX Export Feature", "status": "Planned", "tags": ["critical","export","docx","missing-feature"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "drag-drop-event-handlers", "title": "Implement Proper Drag & Drop Event Handling", "status": "Planned", "tags": ["drag-drop","events","validation","feedback"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "icon-matching-system", "title": "Robust Icon Filename Matching System", "status": "Planned", "tags": ["icons","matching","normalization","debugging"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "docx-library-integration", "title": "Add docx.js Library and Export Logic", "status": "Planned", "tags": ["docx","export","library","integration"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "visual-debugging-system", "title": "Icon System Visual Debugging Interface", "status": "Planned", "tags": ["debugging","icons","transparency","logging"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "file-upload-validation", "title": "Comprehensive File Type Validation", "status": "Planned", "tags": ["validation","upload","error-handling","ux"], "updatedAt": "2025-08-15T12:00:00Z" }
+  ]
 }
