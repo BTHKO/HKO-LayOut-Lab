@@ -1,7 +1,8 @@
 {
   "meta": { "title": "LayoutLab Shared Space", "version": 1 },
   "sections": [
-    { "id": "demo001", "title": "Test Section A", "updatedAt": "2025-08-15T10:00:00Z", "tags": ["demo","sync"], "status": "New" },
-    { "id": "demo002", "title": "Test Section B", "updatedAt": "2025-08-15T10:05:00Z", "tags": ["packet"], "status": "Planned" }
+    { "id": "docx-color-preservation", "title": "DOCX Color Preservation", "status": "In Progress", "tags": ["docx","styles"], "updatedAt": "2025-08-15T12:00:00Z" },
+    { "id": "brand-kit-apply", "title": "Brand Kit Apply Pipeline", "status": "Planned", "tags": ["brand-kit","pipeline"], "updatedAt": "2025-08-15T12:01:00Z" },
+    { "id": "asset-library-ui", "title": "Asset Library UI", "status": "Planned", "tags": ["ui","assets"], "updatedAt": "2025-08-15T12:02:00Z" }
   ]
 }
